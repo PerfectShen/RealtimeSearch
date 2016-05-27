@@ -476,11 +476,13 @@
 //判断某一个数组中的元素 是不是  包含在 另一个数组中 （元素为字符串）
 - (BOOL )_judgeStringArray1:(NSArray *)array1 isInArray2:(NSArray *)array2{
     
-    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"SELF in %@",array2];
+    NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"NOT (SELF in %@)",array2];
     NSArray *resultArray = [array1 filteredArrayUsingPredicate:thePredicate];
     
     //如果不等的话  说明  数组一中的某些元素不在数组二 中
-    return resultArray.count == array1.count;
+//    return resultArray.count == array1.count;
+    DLog(@"%@",resultArray);
+    return !resultArray.count;
 
 }
 @end
