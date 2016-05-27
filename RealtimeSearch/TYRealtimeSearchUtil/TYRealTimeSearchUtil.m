@@ -391,24 +391,34 @@
             }else{  //模型
                 
                 
-                BOOL isIN = NO;
-                
-                for (NSString *key in self.searchPropertys) {
-                    
-                    NSString *value = [object valueForKey:key];
-                    
-                    if ([self _realtimeSearchString:self.searchText fromString:value]) {
-                        
-                        isIN = YES;
-                        break ;
-                    }
-                }
-                
-                if (isIN) {
-                    
-                    [resultArray addObject:string];
-                }
+                NSString *objectclassName = NSStringFromClass([object class]);
+                YYClassInfo *classInfo = [YYClassInfo classInfoWithClassName:objectclassName];
 
+                if ([self _judgeStringArray1:self.searchPropertys isInArray2:[classInfo.propertyInfos allKeys]]) {
+                    
+                    BOOL isIN = NO;
+                    
+                    for (NSString *key in self.searchPropertys) {
+                        
+                        NSString *value = [object valueForKey:key];
+                        
+                        if ([self _realtimeSearchString:self.searchText fromString:value]) {
+                            
+                            isIN = YES;
+                            break ;
+                        }
+                    }
+                    
+                    if (isIN) {
+                        
+                        [resultArray addObject:string];
+                    }
+
+                }else{
+                    
+                    
+                    DLog(@"属性名 输入有误 ");
+                }
                 
             }
             

@@ -153,7 +153,7 @@ static NSString *cellIdent = @"cellident";
         
         //target action 设置搜索的 model
 
-        [[TYRealTimeSearchUtil shareRealTimeSearchUtil] realtimeSearchWithSourceIds:weakSelf.modelIds searchText:text target:weakSelf collationElementSelector:@selector(modelById:) searchPropertys:@[@"num",@"name"] resultBlock:^(NSArray *results) {
+        [[TYRealTimeSearchUtil shareRealTimeSearchUtil] realtimeSearchWithSourceIds:weakSelf.modelIds searchText:text target:weakSelf collationElementSelector:@selector(modelById:) searchPropertys:@[@"zo"] resultBlock:^(NSArray *results) {
             
                             weakSelf.resultArray = results;
                             [weakSelf ty_reloadResultViewControllerWithDataSource:results];
